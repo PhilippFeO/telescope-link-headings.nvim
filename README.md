@@ -39,6 +39,8 @@ The following options (with their defaults) are currently availabe:
 -- The working directory to search for files.
 -- Set to your wiki directory to create links (further examples below)
 working_dir = vim.fn.getcwd(),
+-- Format how the entries of the picker are displayed. Include exactly two `%s`, the first is for the heading, the second for the page/filename.
+format_picker_entry = "%s (%s)",
 -- First letter in display name upper or lower case, i.e. `[Plugins](…)`
 -- or `[plugins](…)`
 first_upper = true,
