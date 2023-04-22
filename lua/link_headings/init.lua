@@ -1,4 +1,3 @@
-local builtin = require "telescope.builtin"
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 local conf = require("telescope.config").values
