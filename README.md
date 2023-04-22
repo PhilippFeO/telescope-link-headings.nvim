@@ -1,4 +1,4 @@
-# telescope-link-headings.nvim
+# telescope-link-headings.nvim #
 Add links to headings to your files, f. i. headings to other pages in your wiki or sections in the `README.md`.
 
 ## Usage
