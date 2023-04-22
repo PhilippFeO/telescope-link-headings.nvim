@@ -6,9 +6,9 @@ By using the function `link_heading` via
 ```vim
 :Telescope link_headings link_heading
 ```
-a telescope file picker opens an lets you choose the heading you want to link. The picker entries follow the scheme `HEADING (PAGE/FILENAME)` and `PAGE/FILENAME` can be used while fuzzy finding. After hitting `<CR>` a string according to `format_string`. is added to your document, for example: [telescope-link-headings.nvim # Setup](./README.md#setup). The default is `"[%s > %s](%s#%s)"` and is resolved to `[PAGE/FILENAME # HEADING](PATH_TO_FILE#anchor)` for `md` files.
+a telescope file picker opens an lets you choose the heading you want to link. The picker entries follow the scheme `HEADING (PAGE/FILENAME)` and `PAGE/FILENAME` can be used while fuzzy finding. After hitting `<CR>` a string according to `format_string`. is added to your document, for example: [telescope-link-headings.nvim > Setup](./README.md#setup). The default is `"[%s > %s](%s#%s)"` and is resolved to `[PAGE/FILENAME # HEADING](PATH_TO_FILE#anchor)` for `md` files.
 
-There might be scenarios, where you have to prepend `./` or `/` to the path string, i. e. using `"[%s # %s](./%s#%s)"` instead of `"[%s > %s](%s#%s)"`.
+There might be scenarios, where you have to prepend `./` or `/` to the path string, i. e. using `"[%s > %s](./%s#%s)"` instead of `"[%s > %s](%s#%s)"`.
 
 Currently, no H1-headings are matched because the start with one `#` which is an ambiguous symbols since it is used for comments in various languages like `python` or `bash`. Matching `^#` would include these as well. As a workaround, you can append `#` to the H1-headings (which are not displayed in the rendered output[^1]), because the pattern `"^# .*#$"` is included in the `ripgrep` call.
 [^1]: An `#` was appended to the H1-heading of this `README.md`.
@@ -52,7 +52,7 @@ first_upper = true,
 -- Lua regex is used. Formatting only works when there are exactly two
 -- `%s`. Currently, no checks for a proper Lua regex are performed, so
 -- keep an eye on having exactly four `%s` and nothing else/more.
-format_string = '[%s # %s](%s#%s)', -- [PAGE # HEADING](PATH_TO_PAGE#ANCHOR)
+format_string = '[%s > %s](%s#%s)', -- [PAGE # HEADING](PATH_TO_PAGE#ANCHOR)
 -- Append space to format_string for better typography and continuous typing
 format_string_append = " ",
 -- Title for the telescope prompt
@@ -83,6 +83,6 @@ vim.keymap.set('n', '<Leader>lh', function()
     working_dir = vim.fn.getcwd(),
     format_string = '[%s # %s](%s#%s)',
   })
-end, { desc = '[l]ink [h]eading in current dir' })
+end, { desc = '[l]ink [h]eading' })
 ```
 you can easily add file links to the `README.md` although you might have defined another format string for your wiki in the `setup` function.
