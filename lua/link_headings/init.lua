@@ -14,21 +14,24 @@ local defaults = {
   format_string_append = " ", -- append space for better typography and continuous typing
   prompt_title = "File Finder",
   remove_extension = true,
+  -- cwd not working_dir because telescope needs a cwd attribute
   working_dir = vim.fn.getcwd(),
 }
 
 local M = {}
 
 M.setup = function(opts)
-  -- cwd not working_dir because telescope's finders.new_oneshot_job
-  -- logic needs the cwd field.
-  defaults.working_dir = opts.working_dir or defaults.working_dir
-  -- defaults.find_command = opts.find_command or defaults.find_command
-  defaults.first_upper = opts.first_upper or defaults.first_upper
-  defaults.format_string = opts.format_string or defaults.format_string
-  defaults.format_string_append = opts.format_string_append or defaults.format_string_append
-  defaults.prompt_title = opts.prompt_title or defaults.prompt_title
-  defaults.remove_extension = opts.remove_extension or defaults.remove_extension
+  -- defaults.working_dir = opts.working_dir or defaults.working_dir
+  -- -- defaults.find_command = opts.find_command or defaults.find_command
+  -- defaults.format_picker_entry = opts.format_picker_entry or defaults.format_picker_entry
+  -- defaults.first_upper = opts.first_upper or defaults.first_upper
+  -- defaults.format_string = opts.format_string or defaults.format_string
+  -- defaults.format_string_append = opts.format_string_append or defaults.format_string_append
+  -- defaults.prompt_title = opts.prompt_title or defaults.prompt_title
+  -- defaults.remove_extension = opts.remove_extension or defaults.remove_extension
+  for k, v in pairs(opts) do
+    defaults[k] = v
+  end
 end
 
 M.link_heading = function(opts)
