@@ -10,7 +10,7 @@ local pickers = require('telescope.pickers')
 local defaults = {
   format_picker_entry = "%s (%s)",    -- HEADING (PAGE/FILENAME)
   first_upper = true,
-  format_string = "[%s > %s](%s#%s)", -- [PAGE/FILENAME # HEADING](PATH_TO_FILE#ANCHOR),
+  format_string = "[%s (%s)](%s#%s)", -- [HEADING (PAGE/FILENAME)](PATH_TO_FILE#ANCHOR),
   format_string_append = " ",         -- append space for better typography and continuous typing
   prompt_title = "Heading Finder",
   -- cwd not working_dir because telescope needs a "cwd" attribute
@@ -118,7 +118,7 @@ M.link_heading = function(opts)
 
             -- Insert formatted link to heading
             vim.api.nvim_put({
-              string.format(defaults.format_string, page_name, raw_heading, wiki_path, anchor)
+              string.format(defaults.format_string, raw_heading, page_name, wiki_path, anchor)
             }, "", false, true)
           end)
           return true
